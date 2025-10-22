@@ -1,5 +1,19 @@
-name: Events Demo 1
-on: ...
+name: Demo Workflow
+on: 
+  pull_request:
+    types:
+      - opened
+      - edited
+    branches:
+      - main
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - 'dev-*'  # Matches dev-feature, dev-bugfix, etc.
+      - 'dev/**' # Matches any branch under dev/ directory den/feature, dev/bugfix/subfix, etc.
+    paths-ignore:
+      - 'github/workflows/**'
 jobs:
   deploy:
     runs-on: ubuntu-latest
